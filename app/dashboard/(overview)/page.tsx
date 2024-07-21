@@ -1,12 +1,12 @@
 import { Suspense } from 'react'
 
-import StatCardsWrapper from '@/components/shared/dashboard/stats-cards-wrapper'
 import { lusitana } from '@/components/shared/fonts'
+import StatCardsWrapper from '@/components/shared/dashboard/stats-cards-wrapper'
 import {
 	CardsSkeleton,
-	LatestInvoicesSkeleton,
 	RevenueChartSkeleton,
 } from '@/components/shared/skeleton'
+import RevenueChartWrapper from '@/components/shared/dashboard/revenue-chart-wrapper'
 
 export default async function Page() {
 	return (
@@ -22,8 +22,9 @@ export default async function Page() {
 			</div>
 
 			<div className='mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8'>
-				<RevenueChartSkeleton />
-				<LatestInvoicesSkeleton />
+				<Suspense fallback={<RevenueChartSkeleton />}>
+					<RevenueChartWrapper />
+				</Suspense>{' '}
 			</div>
 		</main>
 	)
