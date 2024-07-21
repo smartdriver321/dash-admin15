@@ -23,20 +23,17 @@ export default function RevenueChart({
 		<ResponsiveContainer width='100%' height={450}>
 			<BarChart data={revenue}>
 				<XAxis dataKey='month' fontSize={12} tickLine={false} axisLine={true} />
-
 				<YAxis
 					fontSize={12}
 					tickLine={false}
 					axisLine={true}
 					tickFormatter={(value: number) => `$${value}`}
 				/>
-
 				<Bar
 					dataKey='revenue'
 					fill='currentColor'
 					radius={[4, 4, 0, 0]}
 					className='fill-primary'
-					minPointSize={4}
 				/>
 				<CartesianGrid strokeDasharray='3 3' />
 				<Tooltip />

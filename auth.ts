@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import { compare } from 'bcryptjs'
 import { z } from 'zod'
+
 import credentials from 'next-auth/providers/credentials'
 
 import { authConfig } from './auth.config'
@@ -16,15 +17,12 @@ export const { auth, signIn, signOut } = NextAuth({
 					.safeParse(credentials)
 
 				if (parsedCredentials.success) {
-					const { email } = parsedCredentials.data
+					const { email, password } = parsedCredentials.data
 					const user = await getUser(email)
 
 					if (!user) return null
 
-					const passwordsMatch = await compare(
-						credentials.password as string,
-						user.password
-					)
+					const passwordsMatch = await compare(password, user.password)
 
 					if (passwordsMatch) return user
 				}

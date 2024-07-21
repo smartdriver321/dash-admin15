@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 
 export default async function RevenueChartWrapper() {
 	const revenue = await fetchRevenue()
+
 	return (
 		<Card className='w-full md:col-span-4'>
 			<CardHeader>
