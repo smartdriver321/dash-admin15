@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { Suspense } from 'react'
+import { PlusIcon } from 'lucide-react'
 
 import { fetchInvoicesPages } from '@/lib/actions/invoice.actions'
 import { lusitana } from '@/components/shared/fonts'
@@ -7,6 +9,7 @@ import Pagination from '@/components/shared/invoices/pagination'
 import Search from '@/components/shared/search'
 import { InvoicesTableSkeleton } from '@/components/shared/skeleton'
 import InvoicesTable from '@/components/shared/invoices/table'
+import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
 	title: 'Invoices',
@@ -33,7 +36,12 @@ export default async function Page({
 
 			<div className='mt-4 flex items-center justify-between gap-2 md:mt-8'>
 				<Search placeholder='Search invoices...' />
-				CreateInvoice
+				<Button asChild>
+					<Link href='/dashboard/invoices/create'>
+						<span className='hidden md:block'>Create Invoice</span>
+						<PlusIcon className='h-5 md:ml-4' />
+					</Link>
+				</Button>
 			</div>
 
 			<Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
