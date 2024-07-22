@@ -14,6 +14,8 @@ export const metadata: Metadata = {
 	metadataBase: new URL(SERVER_URL),
 }
 
+export const experimental_ppr = true
+
 export default function RootLayout({
 	children,
 }: {
